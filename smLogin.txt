@@ -1,0 +1,83 @@
+import { useState } from "react";
+import Footer from "../Components/Footer";
+import axios from "axios";
+
+function Login() {
+  const [from, setFrom] = useState({
+    UserName: "",
+    email: "",
+    password: "",
+  });
+
+  const handleFrom = (event) => {
+    setFrom({
+      ...from,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.get("http://localhost:5000/Login");
+      const data = response.data;
+      console.log(data);
+    } catch (error) {
+      console.error("Getting the error in the application.", error);
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="w-3/5 h-auto bg-slate-200 text-white  rounded-lg shadow-md">
+        <div className="text-purple-900 text-4xl font-bold flex justify-center items-center mt-2">
+          <div>
+            <h1>Log in</h1>
+          </div>
+        </div>
+        <div className=" w-full mt-8">
+          <div className="m-5  ">
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <div className="mb-5">
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    name="username"
+                    onChange={handleFrom}
+                    type="text"
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="mb-5">
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    name="password"
+                    type="Password"
+                    onChange={handleFrom}
+                    placeholder="Password"
+                  />
+                </div>
+                <input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleFrom}
+                />
+              </div>
+              <div className="mt-5 flex justify-center items-center">
+                <div className="text-center w-48 bg-purple-800 hover:bg-white hover:text-purple-500 hover:cursor-active transition duration-300 ease-in-out font-bold rounded-xl">
+                  <button>Log in</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div className="mt-16">
+          <Footer />
+        </div>
+      </div>
+    </div>
+  );
+}
+export default Login;
