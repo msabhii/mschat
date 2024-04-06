@@ -44,6 +44,7 @@ const AppLayout = () => (WrappedComponent) => {
             item
             md={4}
             lg={3}
+            className="bg-gradient-to-br from-purple-400 to-gray-450"
             style={{ height: "100%" }}
             sx={{
               display: { xs: "none", md: "block" },

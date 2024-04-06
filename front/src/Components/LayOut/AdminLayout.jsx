@@ -1,6 +1,7 @@
 import {
   Close as CloseIcon,
   Dashboard as DashboardIcon,
+  ExitToApp as ExitToAppIcon,
   Group as GroupIcon,
   KeyboardBackspace,
   ManageAccounts as ManageAccountsIcon,
@@ -17,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { Link } from "../Styles/StyleComponents";
 //! ---------------------Import Statments------------------------------------
 
@@ -44,8 +45,15 @@ const adminTabs = [
   },
 ];
 
+const isAdmin = true;
+
 const SideBar = ({ w = "100%" }) => {
   const location = useLocation();
+
+  const logOutHandler = () => {
+    console.log("Logout");
+  };
+
   return (
     <Stack width={w} direction={"column"} p={"3rem"} spacing={"3rem"}>
       <Typography variant="h5" textTransform={"uppercase"}>
@@ -62,6 +70,7 @@ const SideBar = ({ w = "100%" }) => {
                 bgcolor: "#5F388C",
                 color: "white",
                 ":hover": { bgcolor: "#8C49A3" },
+                borderRadius: "20px",
               }
             }
           >
@@ -71,6 +80,13 @@ const SideBar = ({ w = "100%" }) => {
             </Stack>
           </Link>
         ))}
+
+        <Link onClick={logOutHandler}>
+          <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
+            <ExitToAppIcon />
+            <Typography>Logout</Typography>
+          </Stack>
+        </Link>
       </Stack>
     </Stack>
   );
@@ -88,7 +104,7 @@ const AdminLayout = ({ children }) => {
     //* To handle the click on the after menu is open  button
     setIsMobile(false);
   };
-
+  if (!isAdmin) return <Navigate to="/admin" />;
   return (
     <Grid container minHeight="100vh">
       <Box>
