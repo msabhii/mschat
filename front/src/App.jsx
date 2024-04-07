@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import ProtectRoute from "./Components/Styles/auth/ProtectRout.jsx";
 import LayOutLoader from "./Components/LayOut/Loaders.jsx";
-
 const Home = lazy(() => import("./pages/Home"));
 //? This called daynemic import for routng as in browser as it get loads it loads up all the routes and file but we want if user is hitting the home route then he will get only the home route.
 
@@ -14,6 +13,13 @@ const Groups = lazy(() => import("./pages/Groups.jsx"));
 const NotFound = lazy(() => import("./pages/NotFound.jsx"));
 const AdminLogin = lazy(() => import("./pages/admin/AdminLogin.jsx"));
 const DashBoard = lazy(() => import("./pages/admin/DashBoard.jsx"));
+const UserManagement = lazy(() => import("./pages/admin/UserManagement.jsx"));
+const ChatManagement = lazy(() => import("./pages/admin/ChatManagement.jsx"));
+const MessageManagement = lazy(() =>
+  import("./pages/admin/MessageManagement.jsx")
+);
+
+//! ---------------------Import Statments------------------------------------
 
 let user = true;
 function App() {
@@ -30,6 +36,7 @@ function App() {
               <Route path="/chat/:chatId" element={<Chat />} />
               <Route path="/groups" element={<Groups />} />
             </Route>
+
             <Route
               path="/Login"
               element={
@@ -40,6 +47,12 @@ function App() {
             />
             <Route path="/admin" element={<AdminLogin />}></Route>
             <Route path="/admin/dashboard" element={<DashBoard />}></Route>
+            <Route path="/admin/user" element={<UserManagement />}></Route>
+            <Route
+              path="/admin/messages"
+              element={<MessageManagement />}
+            ></Route>
+            <Route path="/admin/chat" element={<ChatManagement />}></Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
