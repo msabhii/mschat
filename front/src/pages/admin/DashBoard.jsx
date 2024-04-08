@@ -7,6 +7,7 @@ import AdminLayout from "../../Components/LayOut/AdminLayout";
 import {
   AdminPanelSettings,
   Group as GroupIcon,
+  Message as MessageIcon,
   Person as PersonIcon,
   Widgets,
 } from "@mui/icons-material";
@@ -31,7 +32,12 @@ const DashBoard = () => {
       }}
     >
       <Stack direction={"row"} spacing={"1rem"} alignItems={"center"}>
-        <AdminPanelSettings sx={{ fontSize: "2rem" }} />
+        <AdminPanelSettings
+          sx={{
+            color: "#5F388C",
+            fontSize: "2rem",
+          }}
+        />
         <Box width={"100%"}>
           <SearchField
             sx={{
@@ -53,6 +59,7 @@ const DashBoard = () => {
         <NotificationsIcon
           sx={{
             display: { xs: "none", md: "block" },
+            color: "#5F388C",
           }}
         />
       </Stack>
@@ -60,7 +67,52 @@ const DashBoard = () => {
   );
 
   // * widgets
-  const Widgets = <>widgets</>;
+  const Widgets = (
+    <Stack
+      direction={{
+        xs: "column",
+        sm: "row",
+      }}
+      spacing={"2rem"}
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      margin={"2rem 0"}
+    >
+      <Widget
+        title={"Users"}
+        value={34}
+        Icon={
+          <PersonIcon
+            sx={{
+              color: "#704d99",
+            }}
+          />
+        }
+      />
+      <Widget
+        title={"Chats"}
+        value={4}
+        Icon={
+          <GroupIcon
+            sx={{
+              color: "#704d99",
+            }}
+          />
+        }
+      />
+      <Widget
+        title={"Messages"}
+        value={654}
+        Icon={
+          <MessageIcon
+            sx={{
+              color: "#704d99",
+            }}
+          />
+        }
+      />
+    </Stack>
+  );
 
   return (
     <>
@@ -105,7 +157,17 @@ const DashBoard = () => {
                 width={"100%"}
                 spacing={"0.5rem"}
               >
-                <GroupIcon /> <Typography>Vs</Typography> <PersonIcon />
+                <GroupIcon
+                  sx={{
+                    color: "#704d99",
+                  }}
+                />
+                <Typography>Vs</Typography>{" "}
+                <PersonIcon
+                  sx={{
+                    color: "#704d99",
+                  }}
+                />
               </Stack>
             </Paper>
           </Stack>
@@ -115,5 +177,36 @@ const DashBoard = () => {
     </>
   );
 };
+const Widget = ({ title, value, Icon }) => (
+  <Paper
+    sx={{
+      padding: "2rem",
+      margin: "2rem 0",
+      borderRadius: "1rem",
+      width: "20rem",
+    }}
+  >
+    <Stack alignItems={"center"} spacing={"1rem"}>
+      <Typography
+        sx={{
+          color: "rgba(0,0,0,0.7)",
+          borderRadius: "50%",
+          border: `5px solid #704d99`,
+          width: "5rem",
+          height: "5rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {value}
+      </Typography>
+      <Stack direction={"row"} alignItems={"center"} spacing={"1rem"}>
+        {Icon}
+      </Stack>
+      <Typography>{title}</Typography>
+    </Stack>
+  </Paper>
+);
 
 export default DashBoard;
