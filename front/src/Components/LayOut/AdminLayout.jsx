@@ -114,7 +114,7 @@ const AdminLayout = ({ children }) => {
               position: "fixed",
               display: {
                 xs: "block",
-                sm: "none",
+                md: "none",
               },
               right: "1rem",
               top: "1rem",
@@ -138,11 +138,10 @@ const AdminLayout = ({ children }) => {
       <Grid
         item
         xs={12}
-        sm={5}
         md={8}
         lg={9}
         sx={{
-          display: { xs: "block" },
+          display: { xs: "block", md: "block" },
           bgcolor: "#f5f5f5",
         }}
       >
