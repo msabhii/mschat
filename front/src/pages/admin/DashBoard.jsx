@@ -1,18 +1,18 @@
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import AdminLayout from "../../Components/LayOut/AdminLayout";
 import {
   AdminPanelSettings,
   Group as GroupIcon,
   Message as MessageIcon,
+  Notifications as NotificationsIcon,
   Person as PersonIcon,
-  Widgets,
 } from "@mui/icons-material";
-import { Notifications as NotificationsIcon } from "@mui/icons-material";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import moment from "moment";
+import AdminLayout from "../../Components/LayOut/AdminLayout";
+import { DoughnutChart, LineChart } from "../../Components/Specific/Chart";
 import {
   CurveButton,
   SearchField,
@@ -132,7 +132,7 @@ const DashBoard = () => {
               <Typography variant="h4" margin={"2rem 0"} width={"100%"}>
                 Last Messages
               </Typography>
-              {"Chat"}
+              <LineChart value={[1,54,4,43,65]} />
             </Paper>
             <Paper
               elevation={3}
@@ -148,6 +148,7 @@ const DashBoard = () => {
                 width: "100%",
               }}
             >
+              <DoughnutChart />
               <Stack
                 position={"absolute"}
                 direction={"row"}
