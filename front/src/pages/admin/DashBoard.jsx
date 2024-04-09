@@ -127,12 +127,13 @@ const DashBoard = () => {
                 margin: "2rem 0",
                 borderRadius: "1rem",
                 width: "100%",
+                maxWidth: "45rem",
               }}
             >
               <Typography variant="h4" margin={"2rem 0"} width={"100%"}>
                 Last Messages
               </Typography>
-              <LineChart value={[1,54,4,43,65]} />
+              <LineChart value={[1, 54, 4, 43, 65]} />
             </Paper>
             <Paper
               elevation={3}
@@ -148,7 +149,7 @@ const DashBoard = () => {
                 width: "100%",
               }}
             >
-              <DoughnutChart />
+              <DoughnutChart labels={["Single Chats,Group Chats"]} value={[23,63]} />
               <Stack
                 position={"absolute"}
                 direction={"row"}

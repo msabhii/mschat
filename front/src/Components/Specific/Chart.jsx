@@ -13,6 +13,7 @@ import {
 } from "chart.js";
 import { BorderColor } from "@mui/icons-material";
 import { purple } from "../Constants/Color";
+import { getLast7Days } from "../../lib/Features";
 //! ---------------------Import Statments------------------------------------
 ChartJS.register(
   CategoryScale,
@@ -24,6 +25,8 @@ ChartJS.register(
   Tooltip,
   Filler
 );
+
+const labels = getLast7Days();
 
 const LineChatOptions = {
   responsive: true,
@@ -51,7 +54,7 @@ const LineChatOptions = {
 };
 const LineChart = ({ value = [] }) => {
   const data = {
-    labels: ["January", "February", "March", "April", "May"],
+    labels,
     datasets: [
       {
         data: value,
@@ -65,8 +68,19 @@ const LineChart = ({ value = [] }) => {
   return <Line data={data} options={LineChatOptions} />;
 };
 
-const DoughnutChart = () => {
-  return <div>DoughnutChart</div>;
+const DoughnutChart = ({ value = [], labels }) => {
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: value,
+        label: "Total Chats Vs Groups Chats",
+        backgroundColor: "rgba(75,12,192,0.2)",
+        borderColor: purple,
+      },
+    ],
+  };
+  return <Doughnut data={data} />;
 };
 
 export { LineChart, DoughnutChart };
