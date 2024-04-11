@@ -86,12 +86,19 @@ const DoughnutChart = ({ value = [], labels }) => {
         data: value,
         label: "Total Chats Vs Groups Chats",
         backgroundColor: "rgba(75,12,192,0.2)",
+        hoverBackgroundColor: purple,
         borderColor: purple,
         offset: 20,
       },
     ],
   };
-  return <Doughnut data={data} options={doughnutChartOptions} />;
+  return (
+    <Doughnut
+      style={{ zIndex: 10 }}
+      data={data}
+      options={doughnutChartOptions}
+    />
+  );
 };
 
 export { LineChart, DoughnutChart };
