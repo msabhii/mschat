@@ -45,7 +45,7 @@ const columns = [
     field: "chat",
     headerName: "Chat",
     headerClassName: "table-header",
-    width: 150,
+    width: 220,
   },
   {
     field: "groupchat",
@@ -63,15 +63,7 @@ const columns = [
 
 const ChatManagement = () => {
   const [rows, setRows] = useState([]);
-  useEffect(() => {
-    setRows(
-      dashboardData.users.map((i) => ({
-        ...i,
-        id: i._id,
-        avatar: transformImage(i.avatar, 50),
-      }))
-    );
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>
