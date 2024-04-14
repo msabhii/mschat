@@ -5,6 +5,7 @@ import AdminLayout from "../../Components/LayOut/AdminLayout";
 import Table from "../../Components/Shared/Table";
 import { transformImage } from "../../lib/Features";
 import Stack from "@mui/material/Stack";
+import AvatarCard from "../../Components/Shared/AvatarCard";
 //! ---------------------Import Statments------------------------------------
 
 const columns = [
@@ -45,25 +46,47 @@ const columns = [
     field: "chat",
     headerName: "Chat",
     headerClassName: "table-header",
-    width: 220,
+    width: 200,
+    renderCell: () => <AvatarCard max={100} avatar={param.row.members} />,
   },
   {
-    field: "groupchat",
-    headerName: "Group Chat",
+    field: "members",
+    headerName: "Members",
+    headerClassName: "table-header",
+    width: 0,
+    renderCell: () => <AvatarCard />,
+  },
+  {
+    field: "totalmessages",
+    headerName: "Total Messages",
     headerClassName: "table-header",
     width: 100,
   },
   {
-    field: "createdAt",
-    headerName: "Time",
+    field: "creator",
+    headerName: "Creator",
     headerClassName: "table-header",
     width: 250,
+    renderCell: (params) => (
+      <Stack direction={"row"} alignItems={"center"} spacing={2}>
+        <Avatar alt={params.row.creator.name} src={param.row.creator.avatar} />
+        <span>{params.row.creator.name}</span>
+      </Stack>
+    ),
   },
 ];
 
 const ChatManagement = () => {
   const [rows, setRows] = useState([]);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setRows(
+      dashboardData.chats.map((i) => ({
+        ...i,
+        id: i._id,
+        avatar: i.avatar.map((i) => transformImage(i, 50)),
+      }))
+    );
+  }, []);
 
   return (
     <div>
